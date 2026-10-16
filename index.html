@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>바이브 코딩 가이드</title>
+  <meta name="description" content="비개발자를 위한 웹 서비스 구조와 바이브 코딩 시작 가이드">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top">🚀 바이브 코딩 가이드</a>
+      <nav class="nav" aria-label="목차">
+        <a href="#map">웹 구조</a>
+        <a href="#flow">데이터 흐름</a>
+        <a href="#agent">코딩 에이전트</a>
+        <a href="#safety">안전장치</a>
+        <a href="#prep">준비물</a>
+        <a href="#start">시작하기</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="다크 모드 전환">
+        <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <p class="eyebrow">비개발자를 위한 웹 개발 핵심 지도</p>
+      <h1>바이브 코딩으로<br><span class="accent">내 서비스 완성하기</span></h1>
+      <p class="lead">웹 서비스의 전체 구조를 알면 AI에게 더 정확한 지시 가능.<br>웹 서비스를 <strong>'집 짓기'</strong>에 비유해 정리.</p>
+      <a class="btn btn-primary" href="#map">지도 펼쳐 보기 ↓</a>
+    </section>
+
+    <!-- 1~5. 웹 서비스 지도 -->
+    <section id="map" class="section">
+      <div class="section-head">
+        <span class="chapter">1 – 5</span>
+        <h2>웹 서비스 지도</h2>
+        <p>블록을 누르면 해당 설명으로 이동.</p>
+      </div>
+
+      <div class="arch" role="group" aria-label="웹 서비스 구조도">
+        <button class="arch-zone zone-front" data-target="card-front" type="button">
+          <span class="zone-icon">🖥️</span>
+          <span class="zone-title">프론트엔드</span>
+          <span class="chips"><i>HTML</i><i>CSS</i><i>JS</i></span>
+        </button>
+        <span class="arch-arrow" aria-hidden="true">⇄</span>
+        <button class="arch-zone zone-back" data-target="card-back" type="button">
+          <span class="zone-icon">⚙️</span>
+          <span class="zone-title">서버</span>
+          <span class="chips"><i>로그인 검증</i><i>결제 처리</i></span>
+        </button>
+        <span class="arch-arrow" aria-hidden="true">⇄</span>
+        <button class="arch-zone zone-db" data-target="card-db" type="button">
+          <span class="zone-icon">🗄️</span>
+          <span class="zone-title">DB</span>
+          <span class="chips"><i>회원 정보</i><i>게시글</i></span>
+        </button>
+
+        <button class="arch-bar bar-framework" data-target="card-framework" type="button">🧩 Next.js (React)로 화면 + 서버를 함께 개발</button>
+        <button class="arch-bar bar-vercel" data-target="card-deploy" type="button">▲ Vercel에 배포</button>
+        <button class="arch-bar bar-supabase" data-target="card-deploy" type="button">⚡ Supabase</button>
+      </div>
+
+      <div class="cards">
+        <article class="card" id="card-front">
+          <div class="card-top"><span class="num">1</span><span class="card-icon">🖥️</span></div>
+          <h3>프론트엔드 <small>Frontend</small></h3>
+          <p class="metaphor">“눈에 보이는 집의 외관과 인테리어”</p>
+          <p class="desc">사용자가 브라우저에서 보는 화면 전체.</p>
+          <ul>
+            <li><b>HTML</b> 뼈대. 제목·입력창·버튼의 위치와 구조</li>
+            <li><b>CSS</b> 스타일. 색상·크기·배치·글꼴</li>
+            <li><b>JS</b> 동작. 버튼 클릭 시 모달 열기 등</li>
+          </ul>
+        </article>
+
+        <article class="card" id="card-framework">
+          <div class="card-top"><span class="num">2</span><span class="card-icon">🧩</span></div>
+          <h3>프레임워크 <small>Framework</small></h3>
+          <p class="metaphor">“벽돌을 쌓는 대신 규격 모듈을 조립해 짓는 집”</p>
+          <ul>
+            <li><b>React</b> 화면을 부품(컴포넌트) 단위로 만들어 조립하는 도구</li>
+            <li><b>Next.js</b> React 기반 프레임워크. 화면과 간단한 서버 기능을 한 프로젝트에서 개발 가능</li>
+            <li>“Next.js로 만들어줘” 요청 시 표준 구조로 코드 생성</li>
+          </ul>
+        </article>
+
+        <article class="card" id="card-back">
+          <div class="card-top"><span class="num">3</span><span class="card-icon">⚙️</span></div>
+          <h3>백엔드 <small>Backend</small></h3>
+          <p class="metaphor">“집 뒤편의 전기·수도 관리실과 경비실”</p>
+          <p class="desc">눈에 보이지 않는 서비스의 뒷단 로직.</p>
+          <ul>
+            <li><b>서버</b> 사용자 요청을 받아 처리하는, 항상 켜져 있는 컴퓨터</li>
+            <li><b>역할</b> 로그인 검증, 결제 처리, 데이터 요청 처리 등</li>
+          </ul>
+        </article>
+
+        <article class="card" id="card-db">
+          <div class="card-top"><span class="num">4</span><span class="card-icon">🗄️</span></div>
+          <h3>데이터베이스 <small>DB</small></h3>
+          <p class="metaphor">“잠겨 있는 서류 보관함과 장부”</p>
+          <p class="desc">데이터를 영구 저장하는 곳. 서버가 꺼져도 데이터 유지.</p>
+          <ul>
+            <li>회원 정보, 게시글·댓글, 결제 내역 등</li>
+          </ul>
+          <div class="callout warning">
+            <strong>비밀번호는 원문 저장 금지</strong>
+            되돌릴 수 없는 값(<b>해시</b>)으로 변환해 저장. 로그인은 직접 구현보다 <b>Supabase Auth</b> 같은 인증 서비스 사용 권장.
+          </div>
+        </article>
+
+        <article class="card" id="card-deploy">
+          <div class="card-top"><span class="num">5</span><span class="card-icon">🌍</span></div>
+          <h3>배포 <small>Deployment</small></h3>
+          <p class="metaphor">“집에 주소를 붙이고 누구나 찾아올 수 있게 공개”</p>
+          <p class="desc">내 컴퓨터(로컬)에서 만든 서비스는 나만 접속 가능 → 인터넷에 올려야 공개됨.</p>
+          <ul>
+            <li><b>Vercel</b> Next.js 앱(화면 + 서버 기능)을 인터넷에 올려 주는 서비스</li>
+            <li><b>Supabase</b> DB와 로그인 기능을 제공하는 서비스</li>
+            <li><b>도메인</b> <code>my-service.com</code> 같은 인터넷 주소</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- 데이터 흐름 -->
+    <section id="flow" class="section">
+      <div class="section-head">
+        <span class="chapter">💡</span>
+        <h2>데이터 흐름 <small>로그인 예시</small></h2>
+        <p>‘다음’ 또는 ‘자동 재생’으로 요청이 오가는 순서 확인.</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow-stage">
+          <div class="flow-node" data-node="front"><span>🖥️</span><b>프론트엔드</b></div>
+          <div class="flow-node" data-node="back"><span>⚙️</span><b>서버</b></div>
+          <div class="flow-node" data-node="db"><span>🗄️</span><b>DB</b></div>
+          <div class="flow-line" aria-hidden="true"></div>
+          <div class="packet" aria-hidden="true"></div>
+        </div>
+
+        <ol class="flow-steps">
+          <li><b>프론트엔드</b> 로그인 버튼 클릭</li>
+          <li><b>서버</b> 요청 수신 → DB에 사용자 정보 조회</li>
+          <li><b>DB</b> 사용자 정보를 서버로 전달</li>
+          <li><b>서버</b> 입력한 비밀번호와 비교 → 결과를 프론트엔드로 전달</li>
+          <li><b>프론트엔드</b> 마이페이지로 전환</li>
+        </ol>
+
+        <div class="flow-controls">
+          <button class="btn" type="button" data-flow="prev">← 이전</button>
+          <button class="btn btn-primary" type="button" data-flow="play">▶ 자동 재생</button>
+          <button class="btn" type="button" data-flow="next">다음 →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 코딩 에이전트 -->
+    <section id="agent" class="section">
+      <div class="section-head">
+        <span class="chapter">6</span>
+        <h2>ChatGPT 대신 코딩 에이전트를 쓰는 이유</h2>
+        <p>Claude Code · Codex</p>
+      </div>
+
+      <div class="compare">
+        <div class="compare-col">
+          <div class="compare-head muted-head">💬 일반 ChatGPT</div>
+          <dl>
+            <dt>역할</dt><dd>설계도만 그려 주는 건축가</dd>
+            <dt>코드 반영</dt><dd>사람이 직접 복사·붙여넣기</dd>
+            <dt>에러 대응</dt><dd>에러를 복사해 다시 질문</dd>
+            <dt>한계</dt><dd>파일이 늘면 구조가 쉽게 꼬임</dd>
+          </dl>
+        </div>
+        <div class="compare-col highlight">
+          <div class="compare-head">🤖 코딩 에이전트</div>
+          <dl>
+            <dt>역할</dt><dd>프로젝트 폴더를 맡아 직접 일하는 직원</dd>
+            <dt>코드 반영</dt><dd>AI가 파일을 직접 생성·수정</dd>
+            <dt>에러 대응</dt><dd>AI가 직접 실행·확인</dd>
+            <dt>한계</dt><dd>여러 파일도 전체 맥락을 보고 작업</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <strong>사람이 할 일</strong>
+        <ul>
+          <li>에이전트가 파일 수정·명령 실행 전에 허락을 구함 → <b>내용 확인 후 승인</b></li>
+          <li>“완료”라고 해도 <b>브라우저에서 직접 동작 확인</b> 필요</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. 안전장치 -->
+    <section id="safety" class="section">
+      <div class="section-head">
+        <span class="chapter">7</span>
+        <h2>꼭 지킬 안전장치</h2>
+      </div>
+
+      <div class="cards two">
+        <article class="card">
+          <div class="card-top"><span class="num">①</span><span class="card-icon">🔑</span></div>
+          <h3>API 키는 <code>.env</code> 파일에만 보관</h3>
+          <ul>
+            <li><b>API 키</b> 외부 서비스 이용용 비밀번호. 유출 시 요금 도용·데이터 노출 위험</li>
+            <li>코드에 직접 쓰지 말고 <code>.env.local</code> 파일에 보관</li>
+            <li><code>.env</code> 파일은 <b>GitHub 업로드 금지</b></li>
+            <li>배포 시 Vercel의 <b>Environment Variables</b>에 별도 입력</li>
+          </ul>
+          <div class="prompt">
+            <span>API 키는 환경변수로 빼줘</span>
+            <button class="copy" type="button">복사</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><span class="num">②</span><span class="card-icon">💾</span></div>
+          <h3>Git으로 저장점 자주 만들기</h3>
+          <ul>
+            <li><b>Git</b> 코드의 세이브 포인트. 망가져도 이전 상태로 복구 가능</li>
+          </ul>
+          <p class="prompt-label">기능이 잘 동작하면</p>
+          <div class="prompt">
+            <span>지금 상태 커밋해줘</span>
+            <button class="copy" type="button">복사</button>
+          </div>
+          <p class="prompt-label">망가지면</p>
+          <div class="prompt">
+            <span>마지막 커밋 상태로 되돌려줘</span>
+            <button class="copy" type="button">복사</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 8. 준비물 -->
+    <section id="prep" class="section">
+      <div class="section-head">
+        <span class="chapter">8</span>
+        <h2>시작 전 준비</h2>
+        <p>준비한 항목은 체크해서 진행 상황 확인.</p>
+      </div>
+
+      <div class="callout warning">
+        <strong>설치 방법은 공식 사이트 기준</strong>
+        설치 방법·요금제는 자주 바뀌므로 각 <b>공식 사이트</b>에서 내 OS(Mac/Windows)에 맞는 안내 확인. 막히면 에러 메시지를 그대로 AI에게 질문.
+      </div>
+
+      <div class="prep-progress">
+        <div class="bar"><span></span></div>
+        <p><b class="done-count">0</b> / <span class="total-count">7</span> 준비 완료</p>
+      </div>
+
+      <ul class="prep-list">
+        <li class="prep-item" data-key="terminal">
+          <label class="check"><input type="checkbox"><span></span></label>
+          <div class="prep-body">
+            <h3>터미널</h3>
+            <p><em>무엇</em> 글자로 컴퓨터에 명령하는 창 (Mac: 터미널, Windows: PowerShell)</p>
+            <p><em>왜</em> 코딩 에이전트 실행</p>
+          </div>
+          <div class="prep-links"><a href="https://code.claude.com/docs/en/terminal-guide" target="_blank" rel="noopener">터미널 가이드 ↗</a></div>
+        </li>
+        <li class="prep-item" data-key="node">
+          <label class="check"><input type="checkbox"><span></span></label>
+          <div class="prep-body">
+            <h3>Node.js</h3>
+            <p><em>무엇</em> JavaScript 실행 엔진 (<b>LTS</b> 버전)</p>
+            <p><em>왜</em> Next.js 앱 실행</p>
+          </div>
+          <div class="prep-links"><a href="https://nodejs.org/en/download" target="_blank" rel="noopener">nodejs.org ↗</a></div>
+        </li>
+        <li class="prep-item" data-key="git">
+          <label class="check"><input type="checkbox"><span></span></label>
+          <div class="prep-body">
+            <h3>Git</h3>
+            <p><em>무엇</em> 코드 저장점 도구</p>
+            <p><em>왜</em> 코드 복구·버전 관리</p>
+          </div>
+          <div class="prep-links"><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git-scm.com ↗</a></div>
+        </li>
+        <li class="prep-item" data-key="github">
+          <label class="check"><input type="checkbox"><span></span></label>
+          <div class="prep-body">
+            <h3>GitHub 계정</h3>
+            <p><em>무엇</em> 저장점을 인터넷에 보관하는 곳</p>
+            <p><em>왜</em> 코드 백업, Vercel 배포 연결</p>
+          </div>
+          <div class="prep-links"><a href="https://github.com/signup" target="_blank" rel="noopener">github.com ↗</a></div>
+        </li>
+        <li class="prep-item" data-key="agent">
+          <label class="check"><input type="checkbox"><span></span></label>
+          <div class="prep-body">
+            <h3>코딩 에이전트 <span class="tag">유료 구독 필요</span></h3>
+            <p><em>무엇</em> Claude Code 또는 Codex 중 하나</p>
+            <p><em>왜</em> 바이브 코딩 핵심 도구</p>
+          </div>
+          <div class="prep-links">
+            <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">Claude Code ↗</a>
+            <a href="https://learn.chatgpt.com/docs/codex/cli" target="_blank" rel="noopener">Codex ↗</a>
+          </div>
+        </li>
+        <li class="prep-item" data-key="vercel">
+          <label class="check"><input type="checkbox"><span></span></label>
+          <div class="prep-body">
+            <h3>Vercel 계정</h3>
+            <p><em>무엇</em> 배포 서비스 (<b>GitHub 계정으로 가입</b>)</p>
+            <p><em>왜</em> 서비스를 인터넷에 공개</p>
+          </div>
+          <div class="prep-links"><a href="https://vercel.com" target="_blank" rel="noopener">vercel.com ↗</a></div>
+        </li>
+        <li class="prep-item" data-key="supabase">
+          <label class="check"><input type="checkbox"><span></span></label>
+          <div class="prep-body">
+            <h3>Supabase 계정 <span class="tag tag-soft">필요할 때만</span></h3>
+            <p><em>무엇</em> DB·로그인 서비스</p>
+            <p><em>왜</em> 회원가입·데이터 저장</p>
+          </div>
+          <div class="prep-links"><a href="https://supabase.com" target="_blank" rel="noopener">supabase.com ↗</a></div>
+        </li>
+      </ul>
+
+      <div class="callout tip">
+        <strong>GitHub 로그인 연결</strong>
+        에이전트 설치 후 아래처럼 요청하면 내 환경에 맞게 안내.
+        <div class="prompt">
+          <span>GitHub에 코드 올릴 수 있게 로그인 연결 도와줘</span>
+          <button class="copy" type="button">복사</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. 시작하기 -->
+    <section id="start" class="section">
+      <div class="section-head">
+        <span class="chapter">9</span>
+        <h2>첫 서비스 만들기 흐름</h2>
+        <p>배포 후 고칠 게 생기면 ② 요청부터 반복.</p>
+      </div>
+
+      <ol class="timeline">
+        <li>
+          <span class="t-dot">1</span>
+          <div class="t-body">
+            <h3>📁 폴더 생성</h3>
+            <p>프로젝트 폴더 안에서 에이전트 실행</p>
+          </div>
+        </li>
+        <li>
+          <span class="t-dot">2</span>
+          <div class="t-body">
+            <h3>💬 요청</h3>
+            <div class="prompt">
+              <span>Next.js로 할 일 관리 앱 만들어줘. 실행 방법도 알려줘.</span>
+              <button class="copy" type="button">복사</button>
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="t-dot">3</span>
+          <div class="t-body">
+            <h3>👀 로컬 확인</h3>
+            <p>브라우저에서 <code>localhost</code> 주소로 접속 (나만 볼 수 있음)</p>
+          </div>
+        </li>
+        <li>
+          <span class="t-dot">4</span>
+          <div class="t-body">
+            <h3>☁️ GitHub 업로드</h3>
+            <div class="prompt">
+              <span>커밋하고 GitHub 비공개 저장소에 올려줘. .env 파일은 제외해줘.</span>
+              <button class="copy" type="button">복사</button>
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="t-dot">5</span>
+          <div class="t-body">
+            <h3>🚀 배포</h3>
+            <p>Vercel에서 GitHub 저장소 Import → <code>○○○.vercel.app</code> 주소 생성.<br>이후 GitHub 업로드 시 <b>자동 배포</b></p>
+          </div>
+        </li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>설치 방법·요금제는 각 공식 사이트 기준. 2026-10 작성.</p>
+    <a href="#top">맨 위로 ↑</a>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
