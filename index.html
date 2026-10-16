@@ -26,7 +26,6 @@
         <a href="#flow">데이터 흐름</a>
         <a href="#agent">코딩 에이전트</a>
         <a href="#safety">안전장치</a>
-        <a href="#prep">준비물</a>
         <a href="#start">시작하기</a>
       </nav>
       <button class="theme-toggle" type="button" aria-label="다크 모드 전환">
@@ -36,190 +35,472 @@
   </header>
 
   <main id="top">
-    <!-- Hero -->
-    <section class="hero">
-      <p class="eyebrow">비개발자를 위한 웹 개발 핵심 지도</p>
-      <h1>바이브 코딩으로<br><span class="accent">내 서비스 완성하기</span></h1>
-      <p class="lead">웹 서비스의 전체 구조를 알면 AI에게 더 정확한 지시 가능.<br>웹 서비스를 <strong>'집 짓기'</strong>에 비유해 정리.</p>
-      <a class="btn btn-primary" href="#map">지도 펼쳐 보기 ↓</a>
-    </section>
-
-    <!-- 1~5. 웹 서비스 지도 -->
+    <!-- 1. 웹 서비스 지도 -->
     <section id="map" class="section">
       <div class="section-head">
-        <span class="chapter">1 – 5</span>
-        <h2>웹 서비스 지도</h2>
-        <p>블록을 누르면 해당 설명으로 이동.</p>
+        <span class="chapter">1 · 웹 서비스 지도</span>
+        <h2>요즘 웹은 보통 이런 식으로 구성됩니다</h2>
+        <p class="section-desc">요즘 웹 서비스의 일반적인 구조. 화면(<b>프론트엔드</b>)·서버(<b>백엔드</b>)·<b>DB</b>로 나뉘고, <b>Next.js</b>로 화면과 서버를 한 프로젝트에서 개발 → <b>Vercel</b>·<b>Supabase</b>로 배포.</p>
+        <p>블록을 누르면 해당 항목 설명 펼침.</p>
       </div>
 
-      <div class="arch" role="group" aria-label="웹 서비스 구조도">
-        <button class="arch-zone zone-front" data-target="card-front" type="button">
-          <span class="zone-icon">🖥️</span>
-          <span class="zone-title">프론트엔드</span>
-          <span class="chips"><i>HTML</i><i>CSS</i><i>JS</i></span>
-        </button>
-        <span class="arch-arrow" aria-hidden="true">⇄</span>
-        <button class="arch-zone zone-back" data-target="card-back" type="button">
-          <span class="zone-icon">⚙️</span>
-          <span class="zone-title">서버</span>
-          <span class="chips"><i>로그인 검증</i><i>결제 처리</i></span>
-        </button>
-        <span class="arch-arrow" aria-hidden="true">⇄</span>
-        <button class="arch-zone zone-db" data-target="card-db" type="button">
-          <span class="zone-icon">🗄️</span>
-          <span class="zone-title">DB</span>
-          <span class="chips"><i>회원 정보</i><i>게시글</i></span>
-        </button>
+      <div class="map-layout">
+        <div class="arch" role="group" aria-label="웹 서비스 구조도">
+          <!-- Next.js 프로젝트: 프론트엔드 + 서버 -->
+          <div class="next-frame">
+            <div class="next-head" data-target="card-framework" role="button" tabindex="0">
+              <span class="next-badge">🧩 Next.js</span>
+              <span>프레임워크 하나로 <b>화면 + 서버</b>를 한 프로젝트에서 개발</span>
+            </div>
 
-        <button class="arch-bar bar-framework" data-target="card-framework" type="button">🧩 Next.js (React)로 화면 + 서버를 함께 개발</button>
-        <button class="arch-bar bar-vercel" data-target="card-deploy" type="button">▲ Vercel에 배포</button>
-        <button class="arch-bar bar-supabase" data-target="card-deploy" type="button">⚡ Supabase</button>
-      </div>
+            <div class="next-body">
+              <div class="arch-zone zone-front" data-target="card-front" role="button" tabindex="0">
+                <div class="zone-label"><span class="zone-icon">🖥️</span><b>프론트엔드</b><small>브라우저 화면</small></div>
 
-      <div class="cards">
-        <article class="card" id="card-front">
-          <div class="card-top"><span class="num">1</span><span class="card-icon">🖥️</span></div>
-          <h3>프론트엔드 <small>Frontend</small></h3>
-          <p class="metaphor">“눈에 보이는 집의 외관과 인테리어”</p>
-          <p class="desc">사용자가 브라우저에서 보는 화면 전체.</p>
-          <ul>
-            <li><b>HTML</b> 뼈대. 제목·입력창·버튼의 위치와 구조</li>
-            <li><b>CSS</b> 스타일. 색상·크기·배치·글꼴</li>
-            <li><b>JS</b> 동작. 버튼 클릭 시 모달 열기 등</li>
-          </ul>
-        </article>
+                <div class="layer layer-html">
+                  <div class="layer-head"><span class="layer-tag">HTML</span>문서 · 뼈대</div>
+<pre><code>&lt;form&gt;
+  &lt;input placeholder=<span class="s">"이메일"</span>&gt;
+  &lt;button&gt;로그인&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <div class="layer layer-css">
+                  <div class="layer-head"><span class="layer-tag">CSS</span>스타일 · 꾸미기</div>
+<pre><code>button {
+  background: <span class="s">blue</span>;
+  border-radius: <span class="s">8px</span>;
+}</code></pre>
+                </div>
+                <div class="layer layer-js">
+                  <div class="layer-head"><span class="layer-tag">JS</span>동작 · 버튼 클릭</div>
+<pre><code>button.onclick = () =&gt;
+  fetch(<span class="s">'/api/login'</span>)
+<span class="c">// ↑ 서버로 로그인 요청</span></code></pre>
+                </div>
+              </div>
 
-        <article class="card" id="card-framework">
-          <div class="card-top"><span class="num">2</span><span class="card-icon">🧩</span></div>
-          <h3>프레임워크 <small>Framework</small></h3>
-          <p class="metaphor">“벽돌을 쌓는 대신 규격 모듈을 조립해 짓는 집”</p>
-          <ul>
-            <li><b>React</b> 화면을 부품(컴포넌트) 단위로 만들어 조립하는 도구</li>
-            <li><b>Next.js</b> React 기반 프레임워크. 화면과 간단한 서버 기능을 한 프로젝트에서 개발 가능</li>
-            <li>“Next.js로 만들어줘” 요청 시 표준 구조로 코드 생성</li>
-          </ul>
-        </article>
+              <div class="arch-link" aria-hidden="true">
+                <span class="link-req">요청</span>
+                <span class="link-res">응답</span>
+              </div>
 
-        <article class="card" id="card-back">
-          <div class="card-top"><span class="num">3</span><span class="card-icon">⚙️</span></div>
-          <h3>백엔드 <small>Backend</small></h3>
-          <p class="metaphor">“집 뒤편의 전기·수도 관리실과 경비실”</p>
-          <p class="desc">눈에 보이지 않는 서비스의 뒷단 로직.</p>
-          <ul>
-            <li><b>서버</b> 사용자 요청을 받아 처리하는, 항상 켜져 있는 컴퓨터</li>
-            <li><b>역할</b> 로그인 검증, 결제 처리, 데이터 요청 처리 등</li>
-          </ul>
-        </article>
+              <div class="arch-zone zone-back" data-target="card-back" role="button" tabindex="0">
+                <div class="zone-label"><span class="zone-icon">⚙️</span><b>서버</b><small>비즈니스 로직</small></div>
 
-        <article class="card" id="card-db">
-          <div class="card-top"><span class="num">4</span><span class="card-icon">🗄️</span></div>
-          <h3>데이터베이스 <small>DB</small></h3>
-          <p class="metaphor">“잠겨 있는 서류 보관함과 장부”</p>
-          <p class="desc">데이터를 영구 저장하는 곳. 서버가 꺼져도 데이터 유지.</p>
-          <ul>
-            <li>회원 정보, 게시글·댓글, 결제 내역 등</li>
-          </ul>
-          <div class="callout warning">
-            <strong>비밀번호는 원문 저장 금지</strong>
-            되돌릴 수 없는 값(<b>해시</b>)으로 변환해 저장. 로그인은 직접 구현보다 <b>Supabase Auth</b> 같은 인증 서비스 사용 권장.
+                <div class="layer layer-server">
+                  <div class="layer-head"><span class="layer-tag">JS</span>로그인 처리 코드</div>
+<pre><code><span class="c">// 1. DB에서 회원 찾기</span>
+<span class="k">const</span> user = <span class="k">await</span> db.find(email)
+
+<span class="c">// 2. 비밀번호 확인</span>
+<span class="k">if</span> (!checkPassword(pw, user)) {
+  <span class="k">return</span> <span class="s">'로그인 실패'</span>
+}
+
+<span class="c">// 3. 결과를 화면에 응답</span>
+<span class="k">return</span> <span class="s">'로그인 성공'</span></code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="next-files">
+              <span class="files-title">📁 Next.js 프로젝트 폴더 하나에 모두 포함</span>
+              <span class="file"><code>app/page.tsx</code><i>화면 (프론트엔드)</i></span>
+              <span class="file"><code>app/api/login/route.ts</code><i>서버 (백엔드)</i></span>
+            </div>
           </div>
-        </article>
 
-        <article class="card" id="card-deploy">
-          <div class="card-top"><span class="num">5</span><span class="card-icon">🌍</span></div>
-          <h3>배포 <small>Deployment</small></h3>
-          <p class="metaphor">“집에 주소를 붙이고 누구나 찾아올 수 있게 공개”</p>
-          <p class="desc">내 컴퓨터(로컬)에서 만든 서비스는 나만 접속 가능 → 인터넷에 올려야 공개됨.</p>
-          <ul>
-            <li><b>Vercel</b> Next.js 앱(화면 + 서버 기능)을 인터넷에 올려 주는 서비스</li>
-            <li><b>Supabase</b> DB와 로그인 기능을 제공하는 서비스</li>
-            <li><b>도메인</b> <code>my-service.com</code> 같은 인터넷 주소</li>
-          </ul>
-        </article>
+          <div class="arch-link db-link" aria-hidden="true">
+            <span class="link-req">조회</span>
+            <span class="link-res">데이터</span>
+          </div>
+
+          <!-- DB -->
+          <div class="arch-zone zone-db" data-target="card-db" role="button" tabindex="0">
+            <div class="zone-label"><span class="zone-icon">🗄️</span><b>DB</b><small>데이터 저장소</small></div>
+            <div class="db-table">
+              <div class="db-name">users 테이블</div>
+              <table>
+                <thead><tr><th>email</th><th>password</th></tr></thead>
+                <tbody>
+                  <tr><td>kim@mail.com</td><td>$2b$10$Xk…</td></tr>
+                  <tr><td>lee@mail.com</td><td>$2b$10$9f…</td></tr>
+                </tbody>
+              </table>
+              <p class="db-note">비밀번호는 해시로 저장</p>
+            </div>
+          </div>
+
+          <button class="arch-bar bar-vercel" data-target="card-deploy" type="button">▲ <b>Vercel</b> — Next.js 프로젝트(화면 + 서버)를 인터넷에 배포</button>
+          <button class="arch-bar bar-supabase" data-target="card-deploy" type="button">⚡ <b>Supabase</b> — DB 제공</button>
+        </div>
+
+        <!-- 항목 설명 (아코디언) -->
+        <div class="acc">
+          <div class="acc-item" id="card-front">
+            <button class="acc-head" type="button" aria-expanded="false">
+              <span class="num">1</span><span class="acc-icon">🖥️</span>
+              <span class="acc-title">프론트엔드 <small>Frontend</small></span><span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body"><div class="acc-inner">
+              <p class="metaphor">“눈에 보이는 집의 외관과 인테리어”</p>
+              <p class="desc">사용자가 브라우저에서 보는 화면 전체.</p>
+              <ul>
+                <li><b>HTML</b> 뼈대. 제목·입력창·버튼의 위치와 구조</li>
+                <li><b>CSS</b> 스타일. 색상·크기·배치·글꼴</li>
+                <li><b>JS</b> 동작. 버튼 클릭 시 모달 열기 등</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="acc-item" id="card-back">
+            <button class="acc-head" type="button" aria-expanded="false">
+              <span class="num">2</span><span class="acc-icon">⚙️</span>
+              <span class="acc-title">백엔드 <small>Backend</small></span><span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body"><div class="acc-inner">
+              <p class="metaphor">“집 뒤편의 전기·수도 관리실과 경비실”</p>
+              <p class="desc">눈에 보이지 않는 서비스의 뒷단 로직.</p>
+              <ul>
+                <li><b>서버</b> 사용자 요청을 받아 처리하는, 항상 켜져 있는 컴퓨터</li>
+                <li><b>역할</b> 로그인 검증, 결제 처리, 데이터 요청 처리 등</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="acc-item" id="card-framework">
+            <button class="acc-head" type="button" aria-expanded="false">
+              <span class="num">3</span><span class="acc-icon">🧩</span>
+              <span class="acc-title">프레임워크 <small>Framework</small></span><span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body"><div class="acc-inner">
+              <p class="metaphor">“벽돌을 쌓는 대신 규격 모듈을 조립해 짓는 집”</p>
+              <ul>
+                <li><b>React</b> 화면을 부품(컴포넌트) 단위로 만들어 조립하는 도구</li>
+                <li><b>Next.js</b> React 기반 프레임워크. 화면과 간단한 서버 기능을 한 프로젝트에서 개발 가능</li>
+                <li>“Next.js로 만들어줘” 요청 시 표준 구조로 코드 생성</li>
+              </ul>
+            </div></div>
+          </div>
+
+          <div class="acc-item" id="card-db">
+            <button class="acc-head" type="button" aria-expanded="false">
+              <span class="num">4</span><span class="acc-icon">🗄️</span>
+              <span class="acc-title">데이터베이스 <small>DB</small></span><span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body"><div class="acc-inner">
+              <p class="metaphor">“잠겨 있는 서류 보관함과 장부”</p>
+              <p class="desc">데이터를 영구 저장하는 곳. 서버가 꺼져도 데이터 유지.</p>
+              <ul>
+                <li>회원 정보, 게시글·댓글, 결제 내역 등</li>
+              </ul>
+              <div class="callout warning">
+                <strong>비밀번호는 원문 저장 금지</strong>
+                되돌릴 수 없는 값(<b>해시</b>)으로 변환해 저장. 로그인은 직접 구현보다 <b>Supabase Auth</b> 같은 인증 서비스 사용 권장.
+              </div>
+            </div></div>
+          </div>
+
+          <div class="acc-item" id="card-deploy">
+            <button class="acc-head" type="button" aria-expanded="false">
+              <span class="num">5</span><span class="acc-icon">🌍</span>
+              <span class="acc-title">배포 <small>Deployment</small></span><span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="acc-body"><div class="acc-inner">
+              <p class="metaphor">“집에 주소를 붙이고 누구나 찾아올 수 있게 공개”</p>
+              <p class="desc">내 컴퓨터(로컬)에서 만든 서비스는 나만 접속 가능 → 인터넷에 올려야 공개됨.</p>
+              <ul>
+                <li><b>Vercel</b> Next.js 앱(화면 + 서버 기능)을 인터넷에 올려 주는 서비스</li>
+                <li><b>Supabase</b> DB와 로그인 기능을 제공하는 서비스</li>
+                <li><b>도메인</b> <code>my-service.com</code> 같은 인터넷 주소</li>
+              </ul>
+            </div></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- 데이터 흐름 -->
+    <!-- 2. 데이터 흐름 -->
     <section id="flow" class="section">
       <div class="section-head">
-        <span class="chapter">💡</span>
-        <h2>데이터 흐름 <small>로그인 예시</small></h2>
-        <p>‘다음’ 또는 ‘자동 재생’으로 요청이 오가는 순서 확인.</p>
+        <span class="chapter">2 · 데이터 흐름</span>
+        <h2>로그인 기능을 예로 들어 흐름을 파악해 보시죠</h2>
+        <p>단계를 눌러 요청이 오가는 순서 확인.</p>
       </div>
 
       <div class="flow">
         <div class="flow-stage">
-          <div class="flow-node" data-node="front"><span>🖥️</span><b>프론트엔드</b></div>
-          <div class="flow-node" data-node="back"><span>⚙️</span><b>서버</b></div>
-          <div class="flow-node" data-node="db"><span>🗄️</span><b>DB</b></div>
-          <div class="flow-line" aria-hidden="true"></div>
-          <div class="packet" aria-hidden="true"></div>
+          <!-- Next.js 프로젝트: 프론트엔드 + 서버 -->
+          <div class="flow-next">
+            <div class="flow-next-head"><span class="next-badge">🧩 Next.js</span></div>
+            <div class="flow-next-body">
+              <!-- 프론트엔드 -->
+              <div class="flow-node zone-front" data-node="front">
+                <div class="zone-label"><span class="zone-icon">🖥️</span><b>프론트엔드</b></div>
+                <div class="layer-chips">
+                  <span data-layer="html">HTML</span><span data-layer="css">CSS</span><span data-layer="js">JS</span>
+                </div>
+
+                <div class="browser" data-screen="form">
+                  <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">my-service.com/login</span></div>
+                  <div class="browser-body">
+                    <div class="screen-form">
+                      <div class="fake-input">kim@mail.com</div>
+                      <div class="fake-input">••••••••</div>
+                      <div class="fake-button"><span class="btn-text">로그인</span><span class="btn-loading">로그인 중…</span></div>
+                    </div>
+                    <div class="screen-done">
+                      <span class="done-emoji">👋</span>
+                      <b>kim님, 환영합니다!</b>
+                      <small>마이페이지</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="layer layer-js">
+                  <div class="layer-head"><span class="layer-tag">JS</span>동작</div>
+<pre><code><span class="ln" data-ln="f1">button.onclick = <span class="k">async</span> () =&gt; {</span><span class="ln" data-ln="f2">  <span class="k">await</span> fetch(<span class="s">'/api/login'</span>,
+    { email, pw })</span><span class="ln" data-ln="f3">  router.push(<span class="s">'/mypage'</span>)</span><span class="ln" data-ln="f4">}</span></code></pre>
+                </div>
+              </div>
+
+              <!-- 프론트엔드 ⇄ 서버 -->
+              <div class="flow-link" data-link="fs" aria-hidden="true">
+                <span class="link-req">요청</span>
+                <span class="link-res">응답</span>
+                <span class="packet"></span>
+              </div>
+
+              <!-- 서버 -->
+              <div class="flow-node zone-back" data-node="back">
+                <div class="zone-label"><span class="zone-icon">⚙️</span><b>서버</b><small>비즈니스 로직</small></div>
+                <div class="layer layer-server">
+                  <div class="layer-head"><span class="layer-tag">JS</span>로그인 처리 코드</div>
+<pre><code><span class="ln" data-ln="s1"><span class="c">// 1. DB에서 회원 찾기</span></span><span class="ln" data-ln="s2"><span class="k">const</span> user = <span class="k">await</span> db.find(email)</span><span class="ln" data-ln="s3"><span class="c">// 2. 비밀번호 확인</span></span><span class="ln" data-ln="s4"><span class="k">if</span> (!checkPassword(pw, user)) {</span><span class="ln" data-ln="s5">  <span class="k">return</span> <span class="s">'로그인 실패'</span></span><span class="ln" data-ln="s6">}</span><span class="ln" data-ln="s7"><span class="c">// 3. 결과를 화면에 응답</span></span><span class="ln" data-ln="s8"><span class="k">return</span> <span class="s">'로그인 성공'</span></span></code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 서버 ⇄ DB -->
+          <div class="flow-link" data-link="sd" aria-hidden="true">
+            <span class="link-req">조회</span>
+            <span class="link-res">데이터</span>
+            <span class="packet"></span>
+          </div>
+
+          <!-- DB -->
+          <div class="flow-node zone-db" data-node="db">
+            <div class="zone-label"><span class="zone-icon">🗄️</span><b>DB</b></div>
+            <div class="db-table">
+              <div class="db-name">users 테이블</div>
+              <table>
+                <thead><tr><th>email</th><th>password</th></tr></thead>
+                <tbody>
+                  <tr data-row="lee"><td>lee@mail.com</td><td>$2b$10$9f…</td></tr>
+                  <tr data-row="kim"><td>kim@mail.com</td><td>$2b$10$Xk…</td></tr>
+                  <tr data-row="park"><td>park@mail.com</td><td>$2b$10$Qa…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
         </div>
 
-        <ol class="flow-steps">
-          <li><b>프론트엔드</b> 로그인 버튼 클릭</li>
-          <li><b>서버</b> 요청 수신 → DB에 사용자 정보 조회</li>
-          <li><b>DB</b> 사용자 정보를 서버로 전달</li>
-          <li><b>서버</b> 입력한 비밀번호와 비교 → 결과를 프론트엔드로 전달</li>
-          <li><b>프론트엔드</b> 마이페이지로 전환</li>
+        <ol class="flow-steps" aria-live="polite">
+          <li data-where="front"><b>프론트엔드</b> 이메일·비밀번호 입력 후 로그인 버튼 클릭 <small>HTML·CSS 화면</small></li>
+          <li data-where="front"><b>프론트엔드</b> JS가 서버로 로그인 요청 전송 <small>fetch</small></li>
+          <li data-where="back"><b>서버</b> 요청 수신 → DB에 회원 조회</li>
+          <li data-where="db"><b>DB</b> users 테이블에서 회원을 찾아 서버로 전달</li>
+          <li data-where="back"><b>서버</b> 입력한 비밀번호와 저장된 해시 비교</li>
+          <li data-where="back"><b>서버</b> 로그인 성공 결과를 프론트엔드로 응답</li>
+          <li data-where="front"><b>프론트엔드</b> 마이페이지로 화면 전환</li>
         </ol>
-
-        <div class="flow-controls">
-          <button class="btn" type="button" data-flow="prev">← 이전</button>
-          <button class="btn btn-primary" type="button" data-flow="play">▶ 자동 재생</button>
-          <button class="btn" type="button" data-flow="next">다음 →</button>
-        </div>
       </div>
     </section>
 
-    <!-- 6. 코딩 에이전트 -->
+    <!-- 3. 코딩 에이전트 -->
     <section id="agent" class="section">
       <div class="section-head">
-        <span class="chapter">6</span>
-        <h2>ChatGPT 대신 코딩 에이전트를 쓰는 이유</h2>
-        <p>Claude Code · Codex</p>
+        <span class="chapter">3 · 코딩 에이전트</span>
+        <h2>지금 코치님은 GPT 채팅으로만 만들고 계세요</h2>
+        <p class="section-desc">대화창에서 받은 <b>HTML 파일 하나</b>로는 수정·기능 추가가 갈수록 어려움. 같은 AI 회사의 <b>코딩 전용 에이전트</b>로 프로젝트 폴더째 맡겨 유지보수·추가 개발.</p>
       </div>
 
-      <div class="compare">
-        <div class="compare-col">
-          <div class="compare-head muted-head">💬 일반 ChatGPT</div>
-          <dl>
-            <dt>역할</dt><dd>설계도만 그려 주는 건축가</dd>
-            <dt>코드 반영</dt><dd>사람이 직접 복사·붙여넣기</dd>
-            <dt>에러 대응</dt><dd>에러를 복사해 다시 질문</dd>
-            <dt>한계</dt><dd>파일이 늘면 구조가 쉽게 꼬임</dd>
-          </dl>
+      <!-- 3-1. AI마다 코딩 에이전트 -->
+      <h3 class="sub-title"><span>3-1</span>AI마다 코딩 전용 에이전트가 따로 있음</h3>
+      <div class="ai-pairs">
+        <div class="ai-pair">
+          <div class="ai-brand">OpenAI</div>
+          <div class="ai-row">
+            <div class="ai-tool chat"><span class="ai-icon">💬</span><b>ChatGPT</b><small>대화용</small></div>
+            <span class="ai-arrow" aria-hidden="true">→</span>
+            <div class="ai-tool agent"><span class="ai-icon">⌨️</span><b>Codex</b><small>코딩 에이전트</small></div>
+          </div>
+          <p class="ai-note">ChatGPT 계정·구독으로 사용</p>
+          <a class="ai-link" href="https://learn.chatgpt.com/docs/codex/cli" target="_blank" rel="noopener">Codex 공식 문서 ↗</a>
         </div>
-        <div class="compare-col highlight">
-          <div class="compare-head">🤖 코딩 에이전트</div>
-          <dl>
-            <dt>역할</dt><dd>프로젝트 폴더를 맡아 직접 일하는 직원</dd>
-            <dt>코드 반영</dt><dd>AI가 파일을 직접 생성·수정</dd>
-            <dt>에러 대응</dt><dd>AI가 직접 실행·확인</dd>
-            <dt>한계</dt><dd>여러 파일도 전체 맥락을 보고 작업</dd>
-          </dl>
+        <div class="ai-pair">
+          <div class="ai-brand">Anthropic</div>
+          <div class="ai-row">
+            <div class="ai-tool chat"><span class="ai-icon">💬</span><b>Claude</b><small>대화용</small></div>
+            <span class="ai-arrow" aria-hidden="true">→</span>
+            <div class="ai-tool agent"><span class="ai-icon">⌨️</span><b>Claude Code</b><small>코딩 에이전트</small></div>
+          </div>
+          <p class="ai-note">Claude 계정·구독으로 사용</p>
+          <a class="ai-link" href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">Claude Code 공식 문서 ↗</a>
+        </div>
+        <div class="ai-pair">
+          <div class="ai-brand">Google</div>
+          <div class="ai-row">
+            <div class="ai-tool chat"><span class="ai-icon">💬</span><b>Gemini</b><small>대화용</small></div>
+            <span class="ai-arrow" aria-hidden="true">→</span>
+            <div class="ai-tool agent"><span class="ai-icon">⌨️</span><b>Gemini CLI</b><small>코딩 에이전트</small></div>
+          </div>
+          <p class="ai-note">Google 계정으로 사용</p>
+          <a class="ai-link" href="https://github.com/google-gemini/gemini-cli" target="_blank" rel="noopener">Gemini CLI 공식 문서 ↗</a>
         </div>
       </div>
+      <p class="ai-tip">💡 지금 쓰는 AI와 <b>같은 회사의 에이전트</b>로 시작하면 계정 그대로 사용 가능.</p>
+
+      <!-- 3-2. 같은 요청, 다른 결과 -->
+      <h3 class="sub-title"><span>3-2</span>같은 요청, 다른 작업 방식</h3>
+      <div class="vs">
+        <!-- 대화창 -->
+        <div class="vs-col vs-chat">
+          <div class="vs-head">💬 대화창 (ChatGPT 등)</div>
+
+          <div class="mock-chat">
+            <div class="bubble me">로그인 기능 추가해줘</div>
+            <div class="bubble ai">
+              전체 코드입니다 👇
+              <pre><code>&lt;html&gt;
+  &lt;style&gt; … &lt;/style&gt;
+  &lt;script&gt; … &lt;/script&gt;
+  … 1,200줄 …
+&lt;/html&gt;</code></pre>
+            </div>
+          </div>
+
+          <div class="vs-arrow">📋 사람이 직접 복사 → 붙여넣기</div>
+
+          <div class="out-file">
+            <span class="out-icon">📄</span>
+            <div>
+              <b>index.html</b> <small>파일 하나</small>
+              <div class="mix"><i class="t-html">HTML</i><i class="t-css">CSS</i><i class="t-js">JS</i> 전부 한 파일에 섞임</div>
+            </div>
+          </div>
+
+          <ul class="vs-points bad">
+            <li>수정할 때마다 코드 전체를 다시 받아 통째로 교체</li>
+            <li>새 기능을 넣으면 기존 기능이 깨지기 쉬움</li>
+            <li>에러 → 복사 → 질문 → 붙여넣기 무한 반복</li>
+            <li>파일이 길어지면 AI가 앞 내용을 잊음</li>
+            <li>잘 되던 상태로 되돌리기 어려움</li>
+          </ul>
+        </div>
+
+        <!-- 코딩 에이전트 -->
+        <div class="vs-col vs-agent">
+          <div class="vs-head">⌨️ 코딩 에이전트 (Codex · Claude Code 등)</div>
+
+          <div class="mock-term">
+            <div class="term-bar"><i></i><i></i><i></i><span>my-app</span></div>
+<pre><code><span class="p">&gt;</span> 로그인 기능 추가해줘
+
+<span class="dim">● 프로젝트 파일 읽는 중…</span>
+<span class="add">+ app/login/page.tsx</span>        <span class="dim">새 파일</span>
+<span class="add">+ app/api/login/route.ts</span>     <span class="dim">새 파일</span>
+<span class="mod">~ components/Header.tsx</span>      <span class="dim">로그인 버튼 추가</span>
+<span class="ok">✓ 실행해서 동작 확인 완료</span></code></pre>
+          </div>
+
+          <div class="vs-arrow">🤖 AI가 파일을 직접 생성·수정</div>
+
+          <div class="out-tree">
+            <div class="tree-root">📁 my-app <small>프로젝트 폴더</small></div>
+            <ul>
+              <li>📁 app
+                <ul>
+                  <li>📄 page.tsx <small>메인 화면</small></li>
+                  <li class="new">📄 login/page.tsx <small>로그인 화면</small></li>
+                  <li class="new">📄 api/login/route.ts <small>로그인 서버</small></li>
+                </ul>
+              </li>
+              <li>📁 components
+                <ul><li class="mod">📄 Header.tsx <small>공통 머리글</small></li></ul>
+              </li>
+              <li>🔑 .env.local <small>API 키 보관</small></li>
+              <li>🕘 Git 저장점 <small>언제든 되돌리기</small></li>
+            </ul>
+          </div>
+
+          <ul class="vs-points good">
+            <li>필요한 파일만 골라 수정 → 기존 기능 유지</li>
+            <li>기능별로 파일이 나뉘어 있어 찾고 고치기 쉬움</li>
+            <li>AI가 직접 실행해 보고 에러까지 수정</li>
+            <li>프로젝트 전체를 읽고 맥락을 파악</li>
+            <li>Git 저장점으로 잘 되던 상태로 복구</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3-3. 지금 HTML에서 이어가기 -->
+      <h3 class="sub-title"><span>3-3</span>지금 만든 HTML, 에이전트로 이어서 개발</h3>
+      <ol class="migrate">
+        <li>
+          <span class="m-num">1</span>
+          <div class="m-visual">📄 → 📁</div>
+          <h4>폴더에 HTML 넣기</h4>
+          <p>새 프로젝트 폴더를 만들고 지금까지 받은 <code>index.html</code>을 그 안에 저장</p>
+        </li>
+        <li>
+          <span class="m-num">2</span>
+          <div class="m-visual">📁 + ⌨️</div>
+          <h4>폴더에서 에이전트 실행</h4>
+          <p>그 폴더 안에서 Codex 또는 Claude Code 실행 (5장 A 단계 참고)</p>
+        </li>
+        <li>
+          <span class="m-num">3</span>
+          <div class="m-visual">📄 → 🧩</div>
+          <h4>프로젝트로 옮기기</h4>
+          <div class="prompt">
+            <span>이 index.html을 Next.js 프로젝트로 옮겨줘. 기능과 화면은 그대로 유지해줘.</span>
+            <button class="copy" type="button">복사</button>
+          </div>
+        </li>
+        <li>
+          <span class="m-num">4</span>
+          <div class="m-visual">🔁</div>
+          <h4>이후 수정·기능 추가</h4>
+          <div class="prompt">
+            <span>회원가입 기능 추가해줘. 기존 기능은 건드리지 마.</span>
+            <button class="copy" type="button">복사</button>
+          </div>
+        </li>
+      </ol>
 
       <div class="callout info">
         <strong>사람이 할 일</strong>
         <ul>
           <li>에이전트가 파일 수정·명령 실행 전에 허락을 구함 → <b>내용 확인 후 승인</b></li>
           <li>“완료”라고 해도 <b>브라우저에서 직접 동작 확인</b> 필요</li>
+          <li>잘 동작하면 <b>“지금 상태 커밋해줘”</b>로 저장점 만들기 (4장)</li>
         </ul>
       </div>
     </section>
 
-    <!-- 7. 안전장치 -->
+    <!-- 4. 안전장치 -->
     <section id="safety" class="section">
       <div class="section-head">
-        <span class="chapter">7</span>
-        <h2>꼭 지킬 안전장치</h2>
+        <span class="chapter">4 · 보안 안전장치</span>
+        <h2>이건 개발하면서 꼭 기억해 둬야 할 보안이에요</h2>
       </div>
 
       <div class="cards two">
         <article class="card">
-          <div class="card-top"><span class="num">①</span><span class="card-icon">🔑</span></div>
+          <div class="card-top"><span class="num">4-1</span><span class="card-icon">🔑</span></div>
           <h3>API 키는 <code>.env</code> 파일에만 보관</h3>
           <ul>
             <li><b>API 키</b> 외부 서비스 이용용 비밀번호. 유출 시 요금 도용·데이터 노출 위험</li>
@@ -234,7 +515,7 @@
         </article>
 
         <article class="card">
-          <div class="card-top"><span class="num">②</span><span class="card-icon">💾</span></div>
+          <div class="card-top"><span class="num">4-2</span><span class="card-icon">💾</span></div>
           <h3>Git으로 저장점 자주 만들기</h3>
           <ul>
             <li><b>Git</b> 코드의 세이브 포인트. 망가져도 이전 상태로 복구 가능</li>
@@ -253,154 +534,261 @@
       </div>
     </section>
 
-    <!-- 8. 준비물 -->
-    <section id="prep" class="section">
+    <!-- 5. 시작하기 -->
+    <section id="start" class="section">
       <div class="section-head">
-        <span class="chapter">8</span>
-        <h2>시작 전 준비</h2>
-        <p>준비한 항목은 체크해서 진행 상황 확인.</p>
+        <span class="chapter">5 · 시작하기</span>
+        <h2>자, 체크리스트대로 시작해 보시죠</h2>
+        <p class="section-desc">계정·도구 준비 → 서비스 폴더 만들기 → 폴더에서 에이전트 실행 → 만들고 확인 → GitHub 연결 → 배포. 끝낸 단계는 체크해서 진행 상황 확인.</p>
       </div>
 
       <div class="callout warning">
         <strong>설치 방법은 공식 사이트 기준</strong>
-        설치 방법·요금제는 자주 바뀌므로 각 <b>공식 사이트</b>에서 내 OS(Mac/Windows)에 맞는 안내 확인. 막히면 에러 메시지를 그대로 AI에게 질문.
+        설치 방법·요금제는 자주 바뀌므로 각 <b>공식 사이트</b>에서 내 OS(Mac/Windows)에 맞는 안내 확인. 막히면 에러 메시지를 그대로 AI에게 질문 (에이전트 설치 후에는 에이전트에게 질문).
       </div>
 
-      <div class="prep-progress">
+      <!-- 전체 로드맵 -->
+      <nav class="roadmap" aria-label="시작하기 단계">
+        <a href="#phase-a"><span>A</span>준비</a>
+        <a href="#phase-b"><span>B</span>폴더 + 에이전트</a>
+        <a href="#phase-c"><span>C</span>만들고 확인</a>
+        <a href="#phase-d"><span>D</span>GitHub + 배포</a>
+      </nav>
+
+      <div class="steps-progress">
         <div class="bar"><span></span></div>
-        <p><b class="done-count">0</b> / <span class="total-count">7</span> 준비 완료</p>
+        <p><b class="done-count">0</b> / <span class="total-count">0</span> 완료</p>
       </div>
 
-      <ul class="prep-list">
-        <li class="prep-item" data-key="terminal">
-          <label class="check"><input type="checkbox"><span></span></label>
-          <div class="prep-body">
-            <h3>터미널</h3>
-            <p><em>무엇</em> 글자로 컴퓨터에 명령하는 창 (Mac: 터미널, Windows: PowerShell)</p>
-            <p><em>왜</em> 코딩 에이전트 실행</p>
-          </div>
-          <div class="prep-links"><a href="https://code.claude.com/docs/en/terminal-guide" target="_blank" rel="noopener">터미널 가이드 ↗</a></div>
-        </li>
-        <li class="prep-item" data-key="node">
-          <label class="check"><input type="checkbox"><span></span></label>
-          <div class="prep-body">
-            <h3>Node.js</h3>
-            <p><em>무엇</em> JavaScript 실행 엔진 (<b>LTS</b> 버전)</p>
-            <p><em>왜</em> Next.js 앱 실행</p>
-          </div>
-          <div class="prep-links"><a href="https://nodejs.org/en/download" target="_blank" rel="noopener">nodejs.org ↗</a></div>
-        </li>
-        <li class="prep-item" data-key="git">
-          <label class="check"><input type="checkbox"><span></span></label>
-          <div class="prep-body">
-            <h3>Git</h3>
-            <p><em>무엇</em> 코드 저장점 도구</p>
-            <p><em>왜</em> 코드 복구·버전 관리</p>
-          </div>
-          <div class="prep-links"><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git-scm.com ↗</a></div>
-        </li>
-        <li class="prep-item" data-key="github">
-          <label class="check"><input type="checkbox"><span></span></label>
-          <div class="prep-body">
-            <h3>GitHub 계정</h3>
-            <p><em>무엇</em> 저장점을 인터넷에 보관하는 곳</p>
-            <p><em>왜</em> 코드 백업, Vercel 배포 연결</p>
-          </div>
-          <div class="prep-links"><a href="https://github.com/signup" target="_blank" rel="noopener">github.com ↗</a></div>
-        </li>
-        <li class="prep-item" data-key="agent">
-          <label class="check"><input type="checkbox"><span></span></label>
-          <div class="prep-body">
-            <h3>코딩 에이전트 <span class="tag">유료 구독 필요</span></h3>
-            <p><em>무엇</em> Claude Code 또는 Codex 중 하나</p>
-            <p><em>왜</em> 바이브 코딩 핵심 도구</p>
-          </div>
-          <div class="prep-links">
-            <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">Claude Code ↗</a>
-            <a href="https://learn.chatgpt.com/docs/codex/cli" target="_blank" rel="noopener">Codex ↗</a>
-          </div>
-        </li>
-        <li class="prep-item" data-key="vercel">
-          <label class="check"><input type="checkbox"><span></span></label>
-          <div class="prep-body">
-            <h3>Vercel 계정</h3>
-            <p><em>무엇</em> 배포 서비스 (<b>GitHub 계정으로 가입</b>)</p>
-            <p><em>왜</em> 서비스를 인터넷에 공개</p>
-          </div>
-          <div class="prep-links"><a href="https://vercel.com" target="_blank" rel="noopener">vercel.com ↗</a></div>
-        </li>
-        <li class="prep-item" data-key="supabase">
-          <label class="check"><input type="checkbox"><span></span></label>
-          <div class="prep-body">
-            <h3>Supabase 계정 <span class="tag tag-soft">필요할 때만</span></h3>
-            <p><em>무엇</em> DB·로그인 서비스</p>
-            <p><em>왜</em> 회원가입·데이터 저장</p>
-          </div>
-          <div class="prep-links"><a href="https://supabase.com" target="_blank" rel="noopener">supabase.com ↗</a></div>
-        </li>
-      </ul>
+      <!-- A. 준비 -->
+      <div class="phase" id="phase-a">
+        <div class="phase-head"><span class="phase-tag">A</span><h3>준비 <small>처음 한 번만</small></h3></div>
+        <ol class="steps">
+          <li class="step" data-key="account">
+            <label class="check"><input type="checkbox"><span></span></label>
+            <div class="step-body">
+              <h4>계정 만들기</h4>
+              <p>AI 유료 구독 + 코드 보관용 GitHub 계정</p>
+              <div class="step-visual accounts">
+                <div class="acc-chip"><span>⌨️</span><b>Codex</b><small>ChatGPT Plus 이상</small></div>
+                <div class="acc-chip"><span>⌨️</span><b>Claude Code</b><small>Claude Pro 이상</small></div>
+                <div class="acc-chip"><span>🐙</span><b>GitHub</b><small>무료 가입</small></div>
+              </div>
+              <div class="step-links">
+                <a href="https://github.com/signup" target="_blank" rel="noopener">GitHub 가입 ↗</a>
+              </div>
+            </div>
+          </li>
 
-      <div class="callout tip">
-        <strong>GitHub 로그인 연결</strong>
-        에이전트 설치 후 아래처럼 요청하면 내 환경에 맞게 안내.
-        <div class="prompt">
-          <span>GitHub에 코드 올릴 수 있게 로그인 연결 도와줘</span>
-          <button class="copy" type="button">복사</button>
+          <li class="step" data-key="tools">
+            <label class="check"><input type="checkbox"><span></span></label>
+            <div class="step-body">
+              <h4>기본 도구 설치: Node.js · Git</h4>
+              <p><b>Node.js</b>(LTS 버전)는 웹 앱 실행 엔진, <b>Git</b>은 코드 저장점 도구. 설치 후 터미널에서 버전이 나오면 성공.</p>
+              <div class="term-mini">
+<pre><code><span class="p">&gt;</span> node -v
+<span class="dim">v24.x.x</span>
+<span class="p">&gt;</span> git --version
+<span class="dim">git version 2.x.x</span></code></pre>
+              </div>
+              <div class="step-links">
+                <a href="https://nodejs.org/en/download" target="_blank" rel="noopener">Node.js ↗</a>
+                <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git ↗</a>
+                <a href="https://code.claude.com/docs/en/terminal-guide" target="_blank" rel="noopener">터미널 여는 법 ↗</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="step" data-key="agent">
+            <label class="check"><input type="checkbox"><span></span></label>
+            <div class="step-body">
+              <h4>코딩 에이전트 설치</h4>
+              <p>Codex 또는 Claude Code 중 구독한 쪽 하나. 공식 문서의 설치 명령을 터미널에 붙여 넣어 설치.</p>
+              <div class="step-links">
+                <a href="https://learn.chatgpt.com/docs/codex/cli" target="_blank" rel="noopener">Codex 설치 ↗</a>
+                <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">Claude Code 설치 ↗</a>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- B. 폴더 + 에이전트 -->
+      <div class="phase" id="phase-b">
+        <div class="phase-head"><span class="phase-tag">B</span><h3>서비스 폴더 만들고 에이전트 실행</h3></div>
+        <ol class="steps">
+          <li class="step" data-key="folder">
+            <label class="check"><input type="checkbox"><span></span></label>
+            <div class="step-body">
+              <h4>컴퓨터에 서비스용 폴더 만들기</h4>
+              <p>서비스 하나 = 폴더 하나. 이 폴더가 앞으로 모든 코드가 쌓이는 곳. 이미 만든 HTML이 있으면 이 폴더에 넣기.</p>
+              <div class="step-visual folder-visual">
+                <div class="desk">🖥️ 바탕화면</div>
+                <span class="arrow">→</span>
+                <div class="folder-big">📁<b>my-app</b></div>
+                <span class="arrow">←</span>
+                <div class="desk">📄 index.html <small>(있다면)</small></div>
+              </div>
+            </div>
+          </li>
+
+          <li class="step" data-key="cd">
+            <label class="check"><input type="checkbox"><span></span></label>
+            <div class="step-body">
+              <h4>터미널(CLI)로 그 폴더에 접속</h4>
+              <p>터미널(Mac: 터미널, Windows: PowerShell)을 열고 <code>cd</code> 명령으로 폴더 이동. 맨 앞에 폴더 이름이 보이면 접속 완료.</p>
+              <div class="term-mini">
+<pre><code><span class="p">&gt;</span> cd Desktop/my-app
+<span class="ok">my-app</span> <span class="p">&gt;</span> <span class="dim">← 이제 이 폴더 안에서 작업</span></code></pre>
+              </div>
+              <p class="step-tip">💡 <code>cd </code>(뒤에 한 칸 띄움)까지 입력하고 폴더를 터미널 창으로 끌어다 놓으면 경로 자동 입력.</p>
+            </div>
+          </li>
+
+          <li class="step" data-key="run">
+            <label class="check"><input type="checkbox"><span></span></label>
+            <div class="step-body">
+              <h4>폴더 안에서 에이전트 실행</h4>
+              <p>폴더에 접속한 상태에서 <code>codex</code> 또는 <code>claude</code> 입력. 처음 실행 시 브라우저가 열리며 구독 계정 로그인.</p>
+              <div class="term-mini">
+<pre><code><span class="ok">my-app</span> <span class="p">&gt;</span> claude      <span class="dim"># 또는 codex</span>
+<span class="dim">● 에이전트 대화 화면 시작</span>
+<span class="p">&gt;</span> <span class="dim">여기에 만들고 싶은 것을 입력</span></code></pre>
+              </div>
+              <p class="step-tip">💡 에이전트는 기본적으로 <b>실행한 폴더 안에서</b> 파일을 읽고 고침 → 반드시 서비스 폴더에서 실행.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- C. 만들고 확인 -->
+      <div class="phase" id="phase-c">
+        <div class="phase-head"><span class="phase-tag">C</span><h3>만들고 내 컴퓨터에서 확인</h3></div>
+        <ol class="steps">
+          <li class="step" data-key="ask">
+            <label class="check"><input type="checkbox"><span></span></label>
+            <div class="step-body">
+              <h4>만들고 싶은 것 요청</h4>
+              <p>처음부터 만들거나, 이미 만든 HTML이 있으면 프로젝트로 옮기기 (3-3 참고).</p>
+              <div class="prompt">
+                <span>Next.js로 할 일 관리 앱 만들어줘. 다 만들면 실행 방법도 알려줘.</span>
+                <button class="copy" type="button">복사</button>
+              </div>
+              <div class="prompt">
+                <span>이 폴더의 index.html을 Next.js 프로젝트로 옮겨줘. 기능과 화면은 그대로 유지해줘.</span>
+                <button class="copy" type="button">복사</button>
+              </div>
+            </div>
+          </li>
+
+          <li class="step" data-key="local">
+            <label class="check"><input type="checkbox"><span></span></label>
+            <div class="step-body">
+              <h4>내 컴퓨터에서 실행해 보기</h4>
+              <p>에이전트에게 실행을 부탁하고 브라우저에서 <code>localhost</code> 주소로 접속. <b>나만 볼 수 있는</b> 내 컴퓨터 화면.</p>
+              <div class="prompt">
+                <span>개발 서버 실행해줘. 브라우저에서 볼 주소도 알려줘.</span>
+                <button class="copy" type="button">복사</button>
+              </div>
+              <div class="mini-browser">
+                <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">localhost:3000</span></div>
+                <div class="mini-browser-body">✅ 할 일 관리 앱 <small>내 컴퓨터에서 실행 중</small></div>
+              </div>
+            </div>
+          </li>
+
+          <li class="step" data-key="commit">
+            <label class="check"><input type="checkbox"><span></span></label>
+            <div class="step-body">
+              <h4>잘 되면 저장점 만들기</h4>
+              <p>기능 하나가 잘 동작할 때마다 커밋. 나중에 망가져도 이 시점으로 복구 가능 (4장).</p>
+              <div class="prompt">
+                <span>지금 상태 커밋해줘</span>
+                <button class="copy" type="button">복사</button>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- D. GitHub + 배포 -->
+      <div class="phase" id="phase-d">
+        <div class="phase-head"><span class="phase-tag">D</span><h3>GitHub 연결하고 세상에 공개</h3></div>
+        <ol class="steps">
+          <li class="step" data-key="gh-connect">
+            <label class="check"><input type="checkbox"><span></span></label>
+            <div class="step-body">
+              <h4>내 컴퓨터와 GitHub 계정 연결</h4>
+              <p>에이전트에게 부탁하면 내 OS에 맞게 안내. 브라우저에서 GitHub 로그인 후 승인하면 연결 끝 (처음 한 번만).</p>
+              <div class="prompt">
+                <span>GitHub에 코드 올릴 수 있게 로그인 연결 도와줘</span>
+                <button class="copy" type="button">복사</button>
+              </div>
+            </div>
+          </li>
+
+          <li class="step" data-key="gh-push">
+            <label class="check"><input type="checkbox"><span></span></label>
+            <div class="step-body">
+              <h4>GitHub에 코드 올리기</h4>
+              <p>내 폴더의 저장점들을 GitHub 저장소에 백업. 컴퓨터가 고장 나도 코드 보존.</p>
+              <div class="prompt">
+                <span>GitHub에 비공개 저장소 만들어서 올려줘. .env 파일은 제외해줘.</span>
+                <button class="copy" type="button">복사</button>
+              </div>
+              <div class="step-visual sync-visual">
+                <div class="sync-box">📁 my-app <small>내 컴퓨터</small></div>
+                <span class="arrow">⇢ push ⇢</span>
+                <div class="sync-box">🐙 my-app <small>GitHub 저장소</small></div>
+              </div>
+            </div>
+          </li>
+
+          <li class="step" data-key="deploy">
+            <label class="check"><input type="checkbox"><span></span></label>
+            <div class="step-body">
+              <h4>Vercel로 배포</h4>
+              <p>Vercel에 <b>GitHub 계정으로 가입</b> → 저장소 Import → Deploy. 누구나 접속 가능한 주소 생성.</p>
+              <div class="step-visual deploy-visual">
+                <div class="sync-box">🐙 GitHub 저장소</div>
+                <span class="arrow">→</span>
+                <div class="sync-box">▲ Vercel <small>Import · Deploy</small></div>
+                <span class="arrow">→</span>
+                <div class="sync-box live">🌍 my-app.vercel.app</div>
+              </div>
+              <p class="step-tip">💡 이후에는 GitHub에 올릴 때마다 <b>자동 배포</b>. 고치고 → 커밋 → 올리기 반복.</p>
+              <div class="step-links">
+                <a href="https://vercel.com" target="_blank" rel="noopener">Vercel ↗</a>
+                <a href="https://vercel.com/docs/git/vercel-for-github" target="_blank" rel="noopener">GitHub 저장소 배포 방법 ↗</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="step optional" data-key="supabase">
+            <label class="check"><input type="checkbox"><span></span></label>
+            <div class="step-body">
+              <h4>(필요할 때) Supabase로 DB·로그인 붙이기 <span class="tag tag-soft">선택</span></h4>
+              <p>회원가입·데이터 저장이 필요해지면 Supabase 가입 후 에이전트에게 연결 요청. <b>Secret key</b>는 절대 화면 코드·GitHub에 넣지 않기.</p>
+              <div class="prompt">
+                <span>Supabase 공식 Next.js 가이드대로 연결해서 회원가입·로그인 만들어줘</span>
+                <button class="copy" type="button">복사</button>
+              </div>
+              <div class="step-links">
+                <a href="https://supabase.com" target="_blank" rel="noopener">Supabase ↗</a>
+                <a href="https://supabase.com/docs/guides/getting-started/quickstarts/nextjs" target="_blank" rel="noopener">Next.js 연결 가이드 ↗</a>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="loop">
+        <span class="loop-icon">🔁</span>
+        <div>
+          <b>이후 개발은 이 반복</b>
+          <p>폴더에서 에이전트 실행 → 수정·기능 요청 → <code>localhost</code> 확인 → 커밋 → GitHub 올리기 → 자동 배포</p>
         </div>
       </div>
-    </section>
-
-    <!-- 9. 시작하기 -->
-    <section id="start" class="section">
-      <div class="section-head">
-        <span class="chapter">9</span>
-        <h2>첫 서비스 만들기 흐름</h2>
-        <p>배포 후 고칠 게 생기면 ② 요청부터 반복.</p>
-      </div>
-
-      <ol class="timeline">
-        <li>
-          <span class="t-dot">1</span>
-          <div class="t-body">
-            <h3>📁 폴더 생성</h3>
-            <p>프로젝트 폴더 안에서 에이전트 실행</p>
-          </div>
-        </li>
-        <li>
-          <span class="t-dot">2</span>
-          <div class="t-body">
-            <h3>💬 요청</h3>
-            <div class="prompt">
-              <span>Next.js로 할 일 관리 앱 만들어줘. 실행 방법도 알려줘.</span>
-              <button class="copy" type="button">복사</button>
-            </div>
-          </div>
-        </li>
-        <li>
-          <span class="t-dot">3</span>
-          <div class="t-body">
-            <h3>👀 로컬 확인</h3>
-            <p>브라우저에서 <code>localhost</code> 주소로 접속 (나만 볼 수 있음)</p>
-          </div>
-        </li>
-        <li>
-          <span class="t-dot">4</span>
-          <div class="t-body">
-            <h3>☁️ GitHub 업로드</h3>
-            <div class="prompt">
-              <span>커밋하고 GitHub 비공개 저장소에 올려줘. .env 파일은 제외해줘.</span>
-              <button class="copy" type="button">복사</button>
-            </div>
-          </div>
-        </li>
-        <li>
-          <span class="t-dot">5</span>
-          <div class="t-body">
-            <h3>🚀 배포</h3>
-            <p>Vercel에서 GitHub 저장소 Import → <code>○○○.vercel.app</code> 주소 생성.<br>이후 GitHub 업로드 시 <b>자동 배포</b></p>
-          </div>
-        </li>
-      </ol>
     </section>
   </main>
 

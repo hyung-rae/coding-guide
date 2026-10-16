@@ -57,7 +57,7 @@
   onScroll();
 
   /* ===== Reveal on scroll ===== */
-  var revealTargets = document.querySelectorAll('.section-head, .arch, .card, .flow, .compare, .prep-item, .timeline li');
+  var revealTargets = document.querySelectorAll('.section-head, .arch, .acc, .card, .flow, .ai-pair, .vs-col, .migrate li, .step');
 
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
@@ -75,96 +75,138 @@
     });
   }
 
-  /* ===== Architecture map → card ===== */
-  document.querySelectorAll('[data-target]').forEach(function (button) {
-    button.addEventListener('click', function () {
-      var card = document.getElementById(button.getAttribute('data-target'));
-      if (!card) return;
-      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      card.classList.remove('flash');
-      void card.offsetWidth;
-      card.classList.add('flash');
-      setTimeout(function () { card.classList.remove('flash'); }, 1800);
+  /* ===== Architecture map ↔ accordion ===== */
+  var accItems = document.querySelectorAll('.acc-item');
+  var mapTargets = document.querySelectorAll('.arch [data-target]');
+  var stacked = window.matchMedia('(max-width: 1100px)');
+  var arch = document.querySelector('.arch');
+  var nextFrame = document.querySelector('.next-frame');
+
+  function setAccordion(id) {
+    accItems.forEach(function (item) {
+      var open = item.id === id;
+      item.classList.toggle('open', open);
+      item.querySelector('.acc-head').setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mapTargets.forEach(function (el) {
+      el.classList.toggle('is-active', el.getAttribute('data-target') === id);
+    });
+    arch.classList.toggle('has-active', !!id);
+    nextFrame.classList.toggle('is-framework', id === 'card-framework');
+  }
+
+  function openFromMap(id) {
+    setAccordion(id);
+    if (stacked.matches) {
+      var item = document.getElementById(id);
+      if (item) setTimeout(function () { item.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 200);
+    }
+  }
+
+  mapTargets.forEach(function (el) {
+    var id = el.getAttribute('data-target');
+    el.addEventListener('click', function () { openFromMap(id); });
+    if (el.getAttribute('role') === 'button') {
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openFromMap(id);
+        }
+      });
+    }
+  });
+
+  accItems.forEach(function (item) {
+    item.querySelector('.acc-head').addEventListener('click', function () {
+      setAccordion(item.classList.contains('open') ? null : item.id);
     });
   });
 
   /* ===== Login data flow ===== */
   var FLOW = [
-    { node: 'front', packet: '아이디·비밀번호' },
-    { node: 'back', packet: '사용자 조회 요청' },
-    { node: 'db', packet: '사용자 정보' },
-    { node: 'back', packet: '로그인 성공' },
-    { node: 'front', packet: '✓ 마이페이지' }
+    { where: 'front', layers: ['html', 'css'], screen: 'pressed', browserHl: true },
+    { where: 'front', layers: ['js'], screen: 'loading', lines: ['f1', 'f2'], link: 'fs', dir: 'fwd', packet: '이메일·비밀번호' },
+    { where: 'back', screen: 'loading', lines: ['s1', 's2'], link: 'sd', dir: 'fwd', packet: 'kim@mail.com 조회', db: 'scan' },
+    { where: 'db', screen: 'loading', lines: ['s2'], link: 'sd', dir: 'back', packet: '회원 정보', db: 'found' },
+    { where: 'back', screen: 'loading', lines: ['s3', 's4', 's5', 's6'] },
+    { where: 'back', screen: 'loading', lines: ['s7', 's8'], link: 'fs', dir: 'back', packet: '로그인 성공' },
+    { where: 'front', layers: ['js'], screen: 'done', lines: ['f3'], url: 'my-service.com/mypage' }
   ];
 
-  var stage = document.querySelector('.flow-stage');
-  var packet = document.querySelector('.packet');
-  var nodes = {};
-  document.querySelectorAll('.flow-node').forEach(function (n) { nodes[n.getAttribute('data-node')] = n; });
+  var flowNodes = document.querySelectorAll('.flow-node');
+  var layerChips = document.querySelectorAll('.layer-chips span');
+  var codeLines = document.querySelectorAll('.flow .ln');
+  var browser = document.querySelector('.browser');
+  var browserUrl = document.querySelector('.browser-url');
+  var flowLinks = document.querySelectorAll('.flow-link');
+  var dbTable = document.querySelector('.flow .db-table');
+  var dbRows = dbTable.querySelectorAll('tbody tr');
   var stepItems = document.querySelectorAll('.flow-steps li');
-  var prevBtn = document.querySelector('[data-flow="prev"]');
-  var nextBtn = document.querySelector('[data-flow="next"]');
-  var playBtn = document.querySelector('[data-flow="play"]');
   var step = 0;
-  var playTimer = null;
 
-  function placePacket() {
-    var node = nodes[FLOW[step].node];
-    var stageRect = stage.getBoundingClientRect();
-    var nodeRect = node.getBoundingClientRect();
-    var center = nodeRect.left - stageRect.left + nodeRect.width / 2;
-    var x = center - packet.offsetWidth / 2;
-    x = Math.max(0, Math.min(x, stageRect.width - packet.offsetWidth));
-    packet.style.transform = 'translateX(' + x + 'px)';
+  function has(list, value) {
+    return !!list && list.indexOf(value) !== -1;
+  }
+
+  function restart(el, className) {
+    el.classList.remove(className);
+    void el.offsetWidth;
+    el.classList.add(className);
   }
 
   function renderFlow() {
-    packet.textContent = FLOW[step].packet;
-    Object.keys(nodes).forEach(function (key) {
-      nodes[key].classList.toggle('active', key === FLOW[step].node);
+    var s = FLOW[step];
+
+    flowNodes.forEach(function (node) {
+      node.classList.toggle('active', node.getAttribute('data-node') === s.where);
     });
+    layerChips.forEach(function (chip) {
+      chip.classList.toggle('on', has(s.layers, chip.getAttribute('data-layer')));
+    });
+    codeLines.forEach(function (line) {
+      line.classList.toggle('hl', has(s.lines, line.getAttribute('data-ln')));
+    });
+
+    browser.setAttribute('data-screen', s.screen);
+    browser.classList.toggle('hl', !!s.browserHl);
+    browserUrl.textContent = s.url || 'my-service.com/login';
+
+    flowLinks.forEach(function (link) {
+      var packet = link.querySelector('.packet');
+      var active = link.getAttribute('data-link') === s.link;
+      link.classList.toggle('go-fwd', active && s.dir === 'fwd');
+      link.classList.toggle('go-back', active && s.dir === 'back');
+      packet.classList.remove('show', 'fwd', 'back');
+      if (active) {
+        packet.textContent = s.packet;
+        packet.classList.add(s.dir);
+        restart(packet, 'show');
+      }
+    });
+
+    dbTable.classList.remove('scan');
+    if (s.db === 'scan') restart(dbTable, 'scan');
+    dbRows.forEach(function (row) {
+      row.classList.toggle('found', s.db === 'found' && row.getAttribute('data-row') === 'kim');
+    });
+
     stepItems.forEach(function (li, i) {
       li.classList.toggle('current', i === step);
       li.classList.toggle('past', i < step);
     });
-    prevBtn.disabled = step === 0;
-    nextBtn.disabled = step === FLOW.length - 1;
-    placePacket();
   }
-
-  function stopPlay() {
-    clearInterval(playTimer);
-    playTimer = null;
-    playBtn.textContent = '▶ 자동 재생';
-  }
-
-  prevBtn.addEventListener('click', function () {
-    stopPlay();
-    if (step > 0) { step--; renderFlow(); }
-  });
-
-  nextBtn.addEventListener('click', function () {
-    stopPlay();
-    if (step < FLOW.length - 1) { step++; renderFlow(); }
-  });
-
-  playBtn.addEventListener('click', function () {
-    if (playTimer) { stopPlay(); return; }
-    if (step === FLOW.length - 1) { step = 0; renderFlow(); }
-    playBtn.textContent = '⏸ 일시 정지';
-    playTimer = setInterval(function () {
-      if (step >= FLOW.length - 1) { stopPlay(); return; }
-      step++;
-      renderFlow();
-    }, 1500);
-  });
 
   stepItems.forEach(function (li, i) {
-    li.style.cursor = 'pointer';
-    li.addEventListener('click', function () { stopPlay(); step = i; renderFlow(); });
+    li.setAttribute('role', 'button');
+    li.setAttribute('tabindex', '0');
+    li.addEventListener('click', function () { step = i; renderFlow(); });
+    li.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); step = i; renderFlow(); }
+      if (e.key === 'ArrowDown' && stepItems[i + 1]) { e.preventDefault(); stepItems[i + 1].focus(); stepItems[i + 1].click(); }
+      if (e.key === 'ArrowUp' && stepItems[i - 1]) { e.preventDefault(); stepItems[i - 1].focus(); stepItems[i - 1].click(); }
+    });
   });
 
-  window.addEventListener('resize', placePacket);
   renderFlow();
 
   /* ===== Copy prompt ===== */
@@ -193,41 +235,48 @@
     });
   });
 
-  /* ===== Prep checklist ===== */
-  var prepItems = document.querySelectorAll('.prep-item');
+  /* ===== Start checklist ===== */
+  var stepEls = document.querySelectorAll('.step');
   var doneCount = document.querySelector('.done-count');
   var totalCount = document.querySelector('.total-count');
-  var prepBar = document.querySelector('.prep-progress .bar span');
+  var stepsBar = document.querySelector('.steps-progress .bar span');
+  var roadmapLinks = document.querySelectorAll('.roadmap a');
   var saved = {};
 
-  try { saved = JSON.parse(store('prep') || '{}') || {}; } catch (e) { saved = {}; }
+  try { saved = JSON.parse(store('steps') || '{}') || {}; } catch (e) { saved = {}; }
 
-  function renderPrep() {
+  function renderSteps() {
     var done = 0;
-    prepItems.forEach(function (item) {
-      var checked = item.querySelector('input').checked;
-      item.classList.toggle('done', checked);
+    stepEls.forEach(function (step) {
+      var checked = step.querySelector('input').checked;
+      step.classList.toggle('done', checked);
       if (checked) done++;
     });
     doneCount.textContent = done;
-    totalCount.textContent = prepItems.length;
-    prepBar.style.width = (done / prepItems.length) * 100 + '%';
+    totalCount.textContent = stepEls.length;
+    stepsBar.style.width = (done / stepEls.length) * 100 + '%';
+
+    roadmapLinks.forEach(function (link) {
+      var phase = document.querySelector(link.getAttribute('href'));
+      var items = phase.querySelectorAll('.step:not(.optional)');
+      var allDone = Array.prototype.every.call(items, function (step) { return step.classList.contains('done'); });
+      link.classList.toggle('done', allDone);
+    });
+    return done;
   }
 
-  prepItems.forEach(function (item) {
-    var key = item.getAttribute('data-key');
-    var input = item.querySelector('input');
+  stepEls.forEach(function (step) {
+    var key = step.getAttribute('data-key');
+    var input = step.querySelector('input');
     input.checked = !!saved[key];
-    input.setAttribute('aria-label', item.querySelector('h3').firstChild.textContent.trim() + ' 준비 완료');
+    input.setAttribute('aria-label', step.querySelector('h4').firstChild.textContent.trim() + ' 완료');
     input.addEventListener('change', function () {
       saved[key] = input.checked;
-      store('prep', JSON.stringify(saved));
-      renderPrep();
-      if (input.checked && Object.keys(saved).filter(function (k) { return saved[k]; }).length === prepItems.length) {
-        showToast('🎉 준비 완료! 이제 시작하기로');
-      }
+      store('steps', JSON.stringify(saved));
+      var done = renderSteps();
+      if (input.checked && done === stepEls.length) showToast('🎉 모든 단계 완료!');
     });
   });
 
-  renderPrep();
+  renderSteps();
 })();
